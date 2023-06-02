@@ -1,0 +1,30 @@
+{
+  "name": "theia-native-dependencies",
+  "version": "1.38.0rr",
+  "description": "Repository for building and distributing the native dependecies of (Eclipse Theia)[https://github.com/eclipse-theia/theia]",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "node-gyp": "^9.0.0"
+  },
+  "dependencies": {
+    "cpu-features": "^0.0.8",
+    "drivelist": "^9.0.2",
+    "find-git-repositories": "^0.1.1",
+    "keytar": "7.2.0",
+    "nsfw": "^2.2.4",
+    "node-pty": "0.11.0-beta32",
+    "ssh2": "^1.13.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonah-iden/theia-native-dependencies.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonah-iden/theia-native-dependencies/issues"
+  },
+  "homepage": "https://github.com/jonah-iden/theia-native-dependencies#readme"
+}
