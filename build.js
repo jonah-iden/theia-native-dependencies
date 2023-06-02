@@ -15,7 +15,7 @@ const modulesToBuild = [
 
 const artifactsPath = path.join(process.cwd(), 'artifacts');
 
-if(artifactsPath) {
+if(fs.existsSync(artifactsPath)) {
     fs.rmSync(artifactsPath, {recursive: true});
 }
 
