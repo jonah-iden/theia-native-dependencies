@@ -1,6 +1,7 @@
 const execSync = require('child_process').execSync;
 const path = require('path');
-const fs = require('fs')
+const fs = require('fs');
+const archiver = require('archiver'); 
 
 const modulesToBuild = [
     {name: "cpu-features", files: ['build/Release/cpufeatures.node'] },
@@ -12,11 +13,17 @@ const modulesToBuild = [
     //{name: "ssh2", files: [] },
 ]
 
+const artifactsPath = path.join(process.cwd(), 'artifacts');
+
+if(artifactsPath) {
+    fs.rmSync(artifactsPath, {recursive: true});
+}
+
 for(let module of modulesToBuild) {
     const modulePath = path.join(process.cwd(), 'node_modules' , module.name)
     execSync('node-gyp rebuild', {cwd: modulePath, stdio: 'inherit'});
+    const dstDir = path.join(artifactsPath, module.name);
     for(let file of module.files) {
-        const dstDir = path.join(process.cwd(), 'artifacts', module.name);
         if(!fs.existsSync(dstDir)) {
             fs.mkdirSync(dstDir, {recursive: true});
         }
@@ -24,4 +31,9 @@ for(let module of modulesToBuild) {
             path.join(modulePath.toString(), file), 
             path.join(dstDir, path.basename(file)));
     }
+    const archive = archiver('zip');
+    const output = fs.createWriteStream(path.join(artifactsPath, `${module.name}.zip`), { flags: "w" });
+    archive.pipe(output);
+    archive.directory(dstDir, false);
+    archive.finalize();
 }
