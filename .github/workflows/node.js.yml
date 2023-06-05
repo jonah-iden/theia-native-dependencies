@@ -1,7 +1,11 @@
 
 name: Build-Artifacts
 
-on: ['workflow_dispatch']
+on: 
+  workflow_dispatch:
+    inputs:
+      version: 
+        type: string
 
 jobs:
   build:
@@ -25,7 +29,8 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with: 
-        name: ${{ github.ref }}-${{matrix.os}}
+        name: ${{ github.event.inputs.version }}-${{matrix.os}}
+        tag_name: ${{ github.event.inputs.version }}
         files: |
           ./artifacts/drivelist.zip
           ./artifacts/cpu-features.zip
