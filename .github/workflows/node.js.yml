@@ -24,8 +24,8 @@ jobs:
     - run: npm run build --if-present
     - name: Release
       uses: softprops/action-gh-release@v1
-      name: ${{ github.ref }}-${{matrix.os}}
       with: 
+        name: ${{ github.ref }}-${{matrix.os}}
         files: |
           ./artifacts/drivelist.zip
           ./artifacts/cpu-features.zip
