@@ -36,5 +36,6 @@ jobs:
           ./artifacts/cpu-features.zip
           ./artifacts/find-git-repositories.zip
           ./artifacts/keytar.zip
+          ./artifacts/node-pty.zip
           ./artifacts/nsfw.zip
           

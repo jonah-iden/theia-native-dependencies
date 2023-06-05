@@ -9,7 +9,7 @@ const modulesToBuild = [
     {name: "find-git-repositories", files: ['build/Release/findGitRepos.node'] },
     {name: "keytar", files: ['build/Release/keytar.node'] },
     {name: "nsfw", files: ['build/Release/nsfw.node'] },
-    {name: "node-pty", files: ['build/Release/pty.node'] },
+    {name: "node-pty", files: ['build/Release/pty.node', 'build/Release/spawn-helper', 'build/Release/winpty-agent.exe'] },
     //{name: "ssh2", files: [] },
 ]
 
@@ -27,9 +27,10 @@ for(let module of modulesToBuild) {
         if(!fs.existsSync(dstDir)) {
             fs.mkdirSync(dstDir, {recursive: true});
         }
-        fs.copyFileSync(
-            path.join(modulePath.toString(), file), 
-            path.join(dstDir, path.basename(file)));
+        const fileToCopy = path.join(modulePath.toString(), file)
+        if(fs.existsSync(fileToCopy)) {
+            fs.copyFileSync(fileToCopy, path.join(dstDir, path.basename(file)));
+        }
     }
     const archive = archiver('zip');
     const output = fs.createWriteStream(path.join(artifactsPath, `${module.name}.zip`), { flags: "w" });
