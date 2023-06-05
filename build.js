@@ -9,7 +9,7 @@ const modulesToBuild = [
     {name: "find-git-repositories", files: ['build/Release/findGitRepos.node'] },
     {name: "keytar", files: ['build/Release/keytar.node'] },
     {name: "nsfw", files: ['build/Release/nsfw.node'] },
-    {name: "node-pty", files: ['build/Release/pty.node', 'build/Release/spawn-helper', 'build/Release/winpty-agent.exe'] },
+    {name: "node-pty", files: ['build/Release/pty.node', 'build/Release/spawn-helper', 'build/Release/winpty-agent.exe', 'build/Release/winpty.dll'] },
     //{name: "ssh2", files: [] },
 ]
 
