@@ -30,7 +30,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with: 
         name: ${{ github.event.inputs.version }}-${{matrix.os}}
-        tag_name: ${{ github.event.inputs.version }}
+        tag_name: ${{ github.event.inputs.version }}-${{matrix.os}}
         files: |
           ./artifacts/drivelist.zip
           ./artifacts/cpu-features.zip
