@@ -26,16 +26,8 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-    - name: Release
-      uses: softprops/action-gh-release@v1
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3 
       with: 
-        name: ${{ github.event.inputs.version }}-${{matrix.os}}
-        tag_name: ${{ github.event.inputs.version }}-${{matrix.os}}
-        files: |
-          ./artifacts/drivelist.zip
-          ./artifacts/cpu-features.zip
-          ./artifacts/find-git-repositories.zip
-          ./artifacts/keytar.zip
-          ./artifacts/node-pty.zip
-          ./artifacts/nsfw.zip
-          
+        name: native-dependencies
+        files: ./artifacts/*.zip

@@ -33,7 +33,7 @@ for(let module of modulesToBuild) {
         }
     }
     const archive = archiver('zip');
-    const output = fs.createWriteStream(path.join(artifactsPath, `${module.name}.zip`), { flags: "w" });
+    const output = fs.createWriteStream(path.join(artifactsPath, `${module.name}-${process.platform}-${process.arch}.zip`), { flags: "w" });
     archive.pipe(output);
     archive.directory(dstDir, false);
     archive.finalize();
