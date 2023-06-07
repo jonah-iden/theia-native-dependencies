@@ -1,11 +1,7 @@
 
 name: Build-Artifacts
 
-on: 
-  workflow_dispatch:
-    inputs:
-      version: 
-        type: string
+on: workflow_dispatch
 
 jobs:
   build:
